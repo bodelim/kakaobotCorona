@@ -1,0 +1,16 @@
+function corona(room){
+	corona =Utils.getWebText("https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=%EC%BD%94%EB%A1%9C%EB%82%98").replace(/<[^>]+>/g,"").split("       코로나바이러스감염증-19 \n       COVID-19")[1];
+corotrue = corona.split("확진환자 ")[1].split(" ")[0]
+
+corodie = corona.split("사망자 ")[1].split(" ")[0];
+
+corocheck = corona.split("검사진행 ")[1].split(" ")[0];
+
+corofalse= corona.split("격리해제 ")[1].split(" ")[0];
+json = {"link_ver":"4.0","template_id":21279,"template_args":{description1:corotrue,description2:corocheck,description3:corofalse,description4:corodie}}
+return Kakao.send(room, json, "custom")
+}
+if(msg =="/코로나"){
+corona(room);
+
+}
